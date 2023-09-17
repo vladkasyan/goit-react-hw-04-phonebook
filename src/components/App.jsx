@@ -36,7 +36,7 @@ export const App = () => {
     console.log('contacts', contacts);
   }, [contacts]);
 
-  const checkDublicate = contact => {
+  const checkDublicate = (contact, name) => {
     if (
       contacts.some(
         ({ name }) => name.toLowerCase() === contact.name.toLowerCase()
@@ -48,7 +48,7 @@ export const App = () => {
   };
 
   const filterChange = e => {
-    setFilter({ filter: e.target.value });
+    setFilter(e.target.value);
   };
 
   const getVisibleContacts = () => {
@@ -67,13 +67,13 @@ export const App = () => {
       <PhoneBook onSubmit={addContactPhone} />
 
       <h2>Contacts</h2>
-      {!contacts.length ? (
+      {!!contacts.length ? (
         <Filter value={filter} ChangeFilter={filterChange} />
       ) : (
         <div>Your phonebook is empty. Add first contact!</div>
       )}
-      {!contacts.length && (
-        <Contacts contacts={getVisibleContacts} onRemove={removeContact} />
+      {!!contacts.length && (
+        <Contacts contacts={getVisibleContacts()} onRemove={removeContact} />
       )}
     </div>
   );
