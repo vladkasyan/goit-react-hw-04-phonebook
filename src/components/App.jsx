@@ -36,13 +36,13 @@ export const App = () => {
     console.log('contacts', contacts);
   }, [contacts]);
 
-  const checkDublicate = (contact, name) => {
+  const checkDublicate = name => {
     if (
       contacts.some(
-        ({ name }) => name.toLowerCase() === contact.name.toLowerCase()
+        contact => contact.name.toLowerCase() === name.toLowerCase()
       )
     ) {
-      alert(`${contact.name} is already in contacts`);
+      alert(`${name} is already in contacts`);
       return;
     }
   };
